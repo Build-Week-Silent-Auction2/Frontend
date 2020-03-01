@@ -13,7 +13,7 @@ function App() {
       <Route exact path='/'>
         <HomePage/>
       </Route>
-      <Route path='/auctionlogin'>
+      <Route path='/login'>
         <AuctionLogin />
       </Route>
       
