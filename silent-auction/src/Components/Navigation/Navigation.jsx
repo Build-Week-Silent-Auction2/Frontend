@@ -22,7 +22,10 @@ const Navigation = (props) => {
               <NavLink href="#"><Link to='/'>Home</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#"><Link to='/login'>Login</Link></NavLink>
+              <NavLink href="#"><Link to='/signup'>Sign-up</Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#"><Link to='/login'>Log-in</Link></NavLink>
             </NavItem>
           </Nav>
         </Collapse>

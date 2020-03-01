@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import AuctionLogin from './Components/Login/AuctionLogin';
+import AuctionSignUp from './Components/Signup/SignUp';
 import Navigation from './Components/Navigation/Navigation';
 import HomePage from './Components/Home/HomePage'
-
+import AuctionLogin from './Components/Login/Login';
 
 function App() {
   return (
@@ -12,6 +12,9 @@ function App() {
       <Navigation />
       <Route exact path='/'>
         <HomePage/>
+      </Route>
+      <Route path='/signup'>
+        <AuctionSignUp />
       </Route>
       <Route path='/login'>
         <AuctionLogin />
