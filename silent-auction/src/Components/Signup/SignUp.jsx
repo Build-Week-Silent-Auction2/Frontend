@@ -1,19 +1,28 @@
 import React from 'react';
 import { Form, Field, ErrorMessage, Formik } from 'formik';
+import * as yup from 'yup';
 import { TextField, InputLabel, Button } from '@material-ui/core';
 
 const AuctionSignUp = () => {
   return(
-    <section className='login-wrapper'>
+    <section className='signup-wrapper'>
       <p>Sign-up Page</p>
       <Formik>
         <Form >
 
             <Field
               id=''
-              name='name'
+              name='firstName'
               variant="outlined"
-              label="Name"
+              label="First Name"
+              as={TextField}
+            />
+
+            <Field
+              id=''
+              name='lastName'
+              variant="outlined"
+              label="Last Name"
               as={TextField}
             />
 
