@@ -1,7 +1,7 @@
 {
   "name": "frontend-silent-auction",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -9,6 +9,9 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/frontend-silent-auction/-/user/org.couchdb.user:erikrodriguez-webdev"
   },
   "scripts": {
     "start": "react-scripts start",
