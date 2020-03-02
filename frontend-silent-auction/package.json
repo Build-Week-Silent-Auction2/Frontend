@@ -11,7 +11,7 @@
     "react-scripts": "3.4.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/frontend-silent-auction/-/user/org.couchdb.user:erikrodriguez-webdev"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "start": "react-scripts start",
