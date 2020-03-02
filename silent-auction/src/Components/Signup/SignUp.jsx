@@ -278,7 +278,7 @@ const AuctionSignUp = props => {
               />
             </div>
             <br />
-            {/* <div>
+            <div>
               <Field
                 as={Select}
                 variant="outlined"
@@ -292,7 +292,7 @@ const AuctionSignUp = props => {
                 <MenuItem value="Seller">Seller</MenuItem>
                 <MenuItem value="Both">Both</MenuItem>
               </Field>
-            </div> */}
+            </div>
 
             <div>
               <Button
