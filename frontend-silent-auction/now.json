@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "frontend-silent-auction",
+  "builds": [
+    {
+      "src": "frontend-silent-auction/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "frontend-silent-auction/$1" }]
+}
