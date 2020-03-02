@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import AuctionSignUp from "./Components/Signup/SignUp";
 import Navigation from "./Components/Navigation/Navigation";
@@ -10,15 +10,11 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route path="/signup">
-        <AuctionSignUp />
-      </Route>
-      <Route path="/login">
-        <AuctionLogin />
-      </Route>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/signup" component={AuctionSignUp} />
+        <Route path="/login" component={AuctionLogin} />
+      </Switch>
     </div>
   );
 }

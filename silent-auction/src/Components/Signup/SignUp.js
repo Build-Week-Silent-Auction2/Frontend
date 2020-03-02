@@ -72,8 +72,8 @@ const SignUpHeader = styled.h1`
 `;
 
 // Form Component
-const AuctionSignUp = props => {
-  const useStyles = makeStyles(theme => ({
+const AuctionSignUp = (props) => {
+  const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
       minWidth: 150
@@ -278,7 +278,7 @@ const AuctionSignUp = props => {
               />
             </div>
             <br />
-            {/* <div>
+            <div>
               <Field
                 as={Select}
                 variant="outlined"
@@ -292,7 +292,7 @@ const AuctionSignUp = props => {
                 <MenuItem value="Seller">Seller</MenuItem>
                 <MenuItem value="Both">Both</MenuItem>
               </Field>
-            </div> */}
+            </div>
 
             <div>
               <Button
