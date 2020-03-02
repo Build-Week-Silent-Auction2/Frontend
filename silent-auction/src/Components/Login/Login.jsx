@@ -1,12 +1,35 @@
 import React from 'react';
 import { Form, Field, ErrorMessage, Formik } from 'formik';
+import * as yup from 'yup';
 import { TextField, InputLabel, Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom'
 
-const AuctionLogin = () => {
+const validationSchema = yup.object().shape({
+
+})
+
+const AuctionLogin = (props) => {
+  const history = useHistory();
+
   return(
     <section className='login-wrapper'>
       <p>Log-in Page</p>
-      <Formik>
+      <Formik initialValues={{}}
+        onSubmit={(data, {setSubmitting}) => {
+                setSubmitting(true);
+
+                props.setFormState({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    password: data.password,
+                    email: data.email,
+                })
+
+                setSubmitting(false);
+                history.push('/')
+            }}
+      >
+      {({errors, isSubmitting, isValid, values}) => (
         <Form >
 
             <Field
@@ -36,7 +59,11 @@ const AuctionLogin = () => {
             <Button type='submit' variant="contained">
               Submit
             </Button>
+
+            <pre>{JSON.stringify(values, null, 2)}</pre>
+            <pre>{JSON.stringify(errors, null, 2)}</pre>
         </Form>
+      )}
       </Formik>
     </section>
   )

@@ -19,13 +19,13 @@ const Navigation = (props) => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="#"><Link to='/'>Home</Link></NavLink>
+              <Link to='/'>Home</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="#"><Link to='/signup'>Sign-up</Link></NavLink>
+              <Link to='/signup'>Sign-up</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="#"><Link to='/login'>Log-in</Link></NavLink>
+              <Link to='/login'>Log-in</Link>
             </NavItem>
           </Nav>
         </Collapse>
