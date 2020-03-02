@@ -1,8 +1,75 @@
 import React from 'react';
-import { Form, Field, ErrorMessage, Formik } from 'formik';
+import { 
+  Form, 
+  Field, 
+  ErrorMessage,
+  Formik, 
+  useField 
+} from 'formik';
 import * as yup from 'yup';
-import { TextField, InputLabel, Button } from '@material-ui/core';
+import { 
+  TextField, 
+  Button, 
+  FormControl,
+  InputLabel, 
+  MenuItem, 
+  FormHelperText, 
+  Select 
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+const MyDropDown = (props) => {
+
+  const classes = useStyles();
+  const [userType, setUserType] = React.useState('');
+
+  const inputLabel = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
+
+  const handleChange = event => {
+    setUserType(event.target.value);
+  };
+
+  return(
+    <div>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          User Type
+        </InputLabel>
+        <Select
+          labelId="userType"
+          id="userType"
+          value={userType}
+          onChange={handleChange}
+          labelWidth={labelWidth}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={'buyer'}>Buyer</MenuItem>
+          <MenuItem value={'seller'}>Seller</MenuItem>
+          <MenuItem value={'both'}>Both</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  )
+}
+
 
 const passwordErrorText = `password must contain at least 
 1 of each uppercase/lowercase character, number, symbol`
@@ -45,7 +112,7 @@ const AuctionSignUp = (props) => {
   return(
     <section className='signup-wrapper'>
       <p>Sign-up Page</p>
-      <Formik initialValues={{firstName: '', lastName: '', email: '', password: ''}}
+      <Formik initialValues={{firstName: '', lastName: '', email: '', password: '', userType: '' }}
         onSubmit={(data, {setSubmitting}) => {
           console.log(data)
           setSubmitting(true);
@@ -54,7 +121,8 @@ const AuctionSignUp = (props) => {
               firstName: data.firstName,
               lastName: data.lastName,
               email: data.email,
-              password: data.password
+              password: data.password,
+              userType: data.userType
           })
 
           setSubmitting(false);
@@ -88,6 +156,7 @@ const AuctionSignUp = (props) => {
                 name='email'
                 variant="outlined"
                 label="E-mail"
+                type='email'
                 as={TextField}
                 value={values.email}
               />
@@ -97,16 +166,17 @@ const AuctionSignUp = (props) => {
                 name='password'
                 variant="outlined"
                 label="Password"
+                type='password'
                 as={TextField}
                 value={values.password}
               />
 
               <Field
                 id=''
-                name='User Type'
+                name='userType'
                 variant="outlined"
-                label="Password"
-                as={InputLabel}
+                label="User"
+                as={MyDropDown}
               />
               <Button type='submit' variant="contained" disabled={ !isValid || isSubmitting || false}>
                 Submit
