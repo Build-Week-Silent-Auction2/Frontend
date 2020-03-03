@@ -112,8 +112,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// Form Component //
+// Form Component
 const AuctionSignUp = props => {
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(0),
+      minWidth: 225
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+
   const classes = useStyles();
 
   return (
@@ -406,7 +416,6 @@ const AuctionSignUp = props => {
                   )}
                 />
               </div>
-
               <ButtonContainer>
                 <Button
                   type="submit"
