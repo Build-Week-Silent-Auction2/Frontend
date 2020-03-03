@@ -1,3 +1,5 @@
+// import { GET_DATA } from "../actions/index";
+
 export const initialState = {
   sellerId: ""
 };
