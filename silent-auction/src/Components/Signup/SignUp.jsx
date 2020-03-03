@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { TextField, Button, MenuItem, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 // End of Imports
 
 // Custom Error Message //
@@ -115,6 +117,10 @@ const AuctionSignUp = props => {
 
   return (
     <FormMainWrapper>
+      <div>
+        Already have an account? Click <Link to="/login">here</Link>!
+      </div>
+      <br />
       <Formik
         initialValues={{
           firstName: "",
