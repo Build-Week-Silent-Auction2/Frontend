@@ -6,8 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -42,4 +41,3 @@ const Navigation = props => {
 };
 
 export default Navigation;
-
