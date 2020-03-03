@@ -4,14 +4,13 @@ import * as yup from "yup";
 import { TextField, Button, MenuItem, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
-
 // End of Imports
 
-// Custom Error Message
+// Custom Error Message //
 const passError = `password must contain at least 
 1 of each uppercase/lowercase character, number, symbol`;
 
-// Form Validation
+// Form Validation //
 const validationSchema = yup.object().shape({
   firstName: yup
     .string()
@@ -57,7 +56,8 @@ const validationSchema = yup.object().shape({
     .matches(/[0-9]/, passError)
     .matches(/[A-Z]/, passError)
     .matches(/[a-z]/, passError)
-    .matches(/[-+_!@#$%^&*.,?]/, passError)
+    .matches(/[-+_!@#$%^&*.,?]/, passError),
+  userType: yup.string().required()
 });
 
 // Form Styling //
@@ -93,19 +93,24 @@ const ButtonContainer = styled.div`
   justify-content: center;
   margin-top: 10%;
 `;
+// Required for styling State and User Type Fields //
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 225
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  errorStyle: {
+    color: "red",
+    textAlign: "center",
+    fontStyle: "italic"
+  }
+}));
 
 // Form Component //
 const AuctionSignUp = props => {
-  const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(0),
-      minWidth: 225
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2)
-    }
-  }));
-
   const classes = useStyles();
 
   return (
@@ -158,6 +163,14 @@ const AuctionSignUp = props => {
                   as={TextField}
                   value={values.firstName}
                 />
+                <ErrorMessage
+                  name="firstName"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      First name is required!
+                    </div>
+                  )}
+                />
               </div>
               <br />
               <div>
@@ -168,6 +181,14 @@ const AuctionSignUp = props => {
                   label="Last Name"
                   as={TextField}
                   value={values.lastName}
+                />
+                <ErrorMessage
+                  name="lastName"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Last name is required!
+                    </div>
+                  )}
                 />
               </div>
               <br />
@@ -181,6 +202,12 @@ const AuctionSignUp = props => {
                   as={TextField}
                   value={values.email}
                 />
+                <ErrorMessage
+                  name="email"
+                  render={msg => (
+                    <div className={classes.errorStyle}>Email is required!</div>
+                  )}
+                />
               </div>
               <br />
               <div>
@@ -192,6 +219,14 @@ const AuctionSignUp = props => {
                   type="text"
                   as={TextField}
                   value={values.streetAddress}
+                />
+                <ErrorMessage
+                  name="streetAddress"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Street address is required!
+                    </div>
+                  )}
                 />
               </div>
               <br />
@@ -205,10 +240,16 @@ const AuctionSignUp = props => {
                   as={TextField}
                   value={values.city}
                 />
+                <ErrorMessage
+                  name="city"
+                  render={msg => (
+                    <div className={classes.errorStyle}>City is required!</div>
+                  )}
+                />
               </div>
               <br />
               <div>
-                {/* NOT DISPLAYING PLACEHOLDER */}
+                {/* NOT DISPLAYING PLACEHOLDER (complicated issue with formik)*/}
                 <Field
                   as={Select}
                   variant="outlined"
@@ -267,6 +308,12 @@ const AuctionSignUp = props => {
                   <MenuItem value="WI">Wisconsin</MenuItem>
                   <MenuItem value="WY">Wyoming</MenuItem>
                 </Field>
+                <ErrorMessage
+                  name="state"
+                  render={msg => (
+                    <div className={classes.errorStyle}>State is required!</div>
+                  )}
+                />
               </div>
               <br />
               <div>
@@ -278,6 +325,14 @@ const AuctionSignUp = props => {
                   type="text"
                   as={TextField}
                   value={values.zipCode}
+                />
+                <ErrorMessage
+                  name="zipCode"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Zip code is required!
+                    </div>
+                  )}
                 />
               </div>
               <br />
@@ -291,6 +346,14 @@ const AuctionSignUp = props => {
                   as={TextField}
                   value={values.username}
                 />
+                <ErrorMessage
+                  name="username"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Username is required!
+                    </div>
+                  )}
+                />
               </div>
               <br />
               <div>
@@ -303,10 +366,18 @@ const AuctionSignUp = props => {
                   as={TextField}
                   value={values.password}
                 />
+                <ErrorMessage
+                  name="password"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Password is required!
+                    </div>
+                  )}
+                />
               </div>
               <br />
               <div>
-                {/* NOT DISPLAYING PLACEHOLDER */}
+                {/* NOT DISPLAYING PLACEHOLDER (complicated issue with formik)*/}
                 <Field
                   as={Select}
                   variant="outlined"
@@ -319,6 +390,14 @@ const AuctionSignUp = props => {
                   <MenuItem value="bidders">Bidders</MenuItem>
                   <MenuItem value="sellers">Sellers</MenuItem>
                 </Field>
+                <ErrorMessage
+                  name="userType"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      User type is required!
+                    </div>
+                  )}
+                />
               </div>
 
               <ButtonContainer>
@@ -330,8 +409,8 @@ const AuctionSignUp = props => {
                   Submit
                 </Button>
               </ButtonContainer>
-              {/* 
-              <pre>{JSON.stringify(values, null, 2)}</pre>
+
+              {/* <pre>{JSON.stringify(values, null, 2)}</pre>
               <pre>{JSON.stringify(errors, null, 2)}</pre> */}
             </Form>
           </FormInsideWrapper>
