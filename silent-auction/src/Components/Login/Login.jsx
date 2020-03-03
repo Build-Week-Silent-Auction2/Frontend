@@ -69,7 +69,7 @@ const AuctionLogin = props => {
   return (
     <FormMainWrapper>
       <div>
-        Don't have an account? Click <Link to="/signup">here</Link>
+        Don't have an account? Click <Link to="/signup">here</Link>!
       </div>
       <br />
       <Formik
