@@ -4,9 +4,9 @@ import * as yup from "yup";
 import { TextField, Button, MenuItem, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-// Custom Error Message
-
+// Form Validation //
 const validationSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required(),
@@ -46,22 +46,32 @@ const ButtonContainer = styled.div`
   justify-content: center;
   margin-top: 10%;
 `;
+// Required for styling State and User Type Fields //
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 225
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  errorStyle: {
+    color: "red",
+    textAlign: "center",
+    fontStyle: "italic"
+  }
+}));
 
+// Form Component //
 const AuctionLogin = props => {
-  const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(0),
-      minWidth: 225
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2)
-    }
-  }));
-
   const classes = useStyles();
 
   return (
     <FormMainWrapper>
+      <div>
+        Don't have an account? Click <Link to="/signup">here</Link>
+      </div>
+      <br />
       <Formik
         initialValues={{ username: "", password: "", userType: "" }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -92,6 +102,14 @@ const AuctionLogin = props => {
                   as={TextField}
                   value={values.username}
                 />
+                <ErrorMessage
+                  name="username"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Username is required!
+                    </div>
+                  )}
+                />
               </div>
               <br />
               <div>
@@ -103,10 +121,18 @@ const AuctionLogin = props => {
                   label="Password"
                   as={TextField}
                 />
+                <ErrorMessage
+                  name="password"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      Password is required!
+                    </div>
+                  )}
+                />
               </div>
               <br />
               <div>
-                {/* NOT DISPLAYING PLACEHOLDER */}
+                {/* NOT DISPLAYING PLACEHOLDER (complicated issue with formik)*/}
                 <Field
                   as={Select}
                   variant="outlined"
@@ -119,6 +145,14 @@ const AuctionLogin = props => {
                   <MenuItem value="bidders">Bidders</MenuItem>
                   <MenuItem value="sellers">Sellers</MenuItem>
                 </Field>
+                <ErrorMessage
+                  name="userType"
+                  render={msg => (
+                    <div className={classes.errorStyle}>
+                      User type is required!
+                    </div>
+                  )}
+                />
               </div>
 
               <ButtonContainer>
