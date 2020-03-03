@@ -94,9 +94,9 @@ const ButtonContainer = styled.div`
   margin-top: 10%;
 `;
 
-// Form Component //
-const AuctionSignUp = props => {
-  const useStyles = makeStyles(theme => ({
+// Form Component
+const AuctionSignUp = (props) => {
+  const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(0),
       minWidth: 225
@@ -145,7 +145,7 @@ const AuctionSignUp = props => {
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, isSubmitting, isValid, values }) => (
+        {({ errors, isSubmitting, isValid, values, resetForm }) => (
           <FormInsideWrapper>
             <SignUpHeader>Sign Up!</SignUpHeader>
             <Form>
@@ -208,13 +208,11 @@ const AuctionSignUp = props => {
               </div>
               <br />
               <div>
-                {/* NOT DISPLAYING PLACEHOLDER */}
                 <Field
                   as={Select}
                   variant="outlined"
                   name="state"
                   className={classes.formControl}
-                  placeholder="State"
                 >
                   <MenuItem value="AL">Alabama</MenuItem>
                   <MenuItem value="AK">Alaska</MenuItem>
@@ -306,19 +304,29 @@ const AuctionSignUp = props => {
               </div>
               <br />
               <div>
-                {/* NOT DISPLAYING PLACEHOLDER */}
                 <Field
                   as={Select}
                   variant="outlined"
                   name="userType"
-                  placeholder="User"
-                  label="User"
                   className={classes.formControl}
-                  value={values.userType}
                 >
-                  <MenuItem value="bidders">Bidders</MenuItem>
-                  <MenuItem value="sellers">Sellers</MenuItem>
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="Buyer">Buyer</MenuItem>
+                  <MenuItem value="Seller">Seller</MenuItem>
+                  <MenuItem value="Both">Both</MenuItem>
                 </Field>
+              </div>
+
+              <div>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={!isValid || isSubmitting || false}
+                >
+                  Submit
+                </Button>
               </div>
 
               <ButtonContainer>
