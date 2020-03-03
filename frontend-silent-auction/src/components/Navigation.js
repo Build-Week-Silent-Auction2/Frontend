@@ -19,7 +19,7 @@ const Navigation = (props) => {
               <Link to="/SignUp">Sign Up</Link>
             </NavItem>
             <NavItem>
-              <Link to="https://github.com/reactstrap/reactstrap">Log In</Link>
+              <Link to="/Login">Log In</Link>
             </NavItem>
           </Nav>
         </Collapse>

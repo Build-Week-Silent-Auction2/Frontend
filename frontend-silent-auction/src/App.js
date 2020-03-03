@@ -16,11 +16,8 @@ function App() {
       
       <Navigation/>
       
-      <SignUp/>
-    
-    
-  
-      
+      <Route path="/SignUp" component={SignUp} />
+      <Route path="/Login" component={Login} />
     </div>
   );
 }

@@ -29,8 +29,6 @@ const SignUp = ({ errors, touched, values, status }) => {
        
 
     <Div className="user-form">
-      <Link to="/SignUpCard"><buttons>Characters
-          </buttons></Link>
       <h1>Sign Up</h1>
       <Form>
         <Field 
