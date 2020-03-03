@@ -145,7 +145,7 @@ const AuctionSignUp = props => {
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, isSubmitting, isValid, values, resetForm }) => (
+        {({ errors, isSubmitting, isValid, values }) => (
           <FormInsideWrapper>
             <SignUpHeader>Sign Up!</SignUpHeader>
             <Form>
@@ -214,6 +214,7 @@ const AuctionSignUp = props => {
                   variant="outlined"
                   name="state"
                   className={classes.formControl}
+                  placeholder="State"
                 >
                   <MenuItem value="AL">Alabama</MenuItem>
                   <MenuItem value="AK">Alaska</MenuItem>
@@ -315,8 +316,8 @@ const AuctionSignUp = props => {
                   className={classes.formControl}
                   value={values.userType}
                 >
-                  <MenuItem value="Buyer">Buyer</MenuItem>
-                  <MenuItem value="Seller">Seller</MenuItem>
+                  <MenuItem value="bidders">Bidders</MenuItem>
+                  <MenuItem value="sellers">Sellers</MenuItem>
                 </Field>
               </div>
 
@@ -329,8 +330,8 @@ const AuctionSignUp = props => {
                   Submit
                 </Button>
               </ButtonContainer>
-
-              {/* <pre>{JSON.stringify(values, null, 2)}</pre>
+              {/* 
+              <pre>{JSON.stringify(values, null, 2)}</pre>
               <pre>{JSON.stringify(errors, null, 2)}</pre> */}
             </Form>
           </FormInsideWrapper>
