@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navigation = props => {
+const Navigation = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -32,6 +32,15 @@ const Navigation = props => {
             </NavItem>
             <NavItem>
               <Link to="/login">Log-in</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/sellers/">Seller Dash</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/bidders/">Bidder Dash</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/shop/">Shop</Link>
             </NavItem>
           </Nav>
         </Collapse>

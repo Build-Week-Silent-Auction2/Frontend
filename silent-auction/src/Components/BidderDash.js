@@ -1,21 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const SellerDash = () => {
+const BidderDash = (props) => {
   const history = useHistory();
-
   const signOut = () => {
     window.localStorage.removeItem("token");
   };
-  // .get with items that are currently up for auction
-  // form to list items for auction(edit and delete here)
+  //.get array with users items that have bids
   return (
     <div>
       <button onClick={signOut}>Sign Out</button>
-      <p>sellerDash.js</p>
+      <p>bidderDash.js</p>
+
       <button onClick={() => history.push("/shop/")}>Go To Auctions</button>
     </div>
   );
 };
 
-export default SellerDash;
+export default BidderDash;

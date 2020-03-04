@@ -1,12 +1,5 @@
-// import { GET_DATA } from "../actions/index";
+import { combineReducers } from "redux";
+import { loginReducer } from "./reducerLogin";
+import { crudReducer } from "./reducerCRUD";
 
-export const initialState = {
-  sellerId: ""
-};
-
-export const reducer = (state = initialState, action) => {
-  switch (action.types) {
-    default:
-      return state;
-  }
-};
+export default combineReducers([loginReducer, crudReducer]);
