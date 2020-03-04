@@ -1,65 +1,86 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-// Material UI Styles //
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: 345
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
-  }
-}));
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import DisplayShop from "./DisplayShop";
 
-// Dashboard Component //
-const BidderDash = props => {
-  // Brings in styles //
-  const classes = useStyles();
-  // Material UI required state //
-  const [expanded, setExpanded] = React.useState(false);
-  // Material UI required handler //
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+const BidderDash = () => {
   const history = useHistory();
+  const location = useLocation();
+
+  const [data, setData] = useState([
+    {
+      id: 0,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    },
+    {
+      id: 1,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    },
+    {
+      id: 2,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    },
+    {
+      id: 3,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    },
+    {
+      id: 4,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    },
+    {
+      id: 5,
+      item_name: "Hammer",
+      description: "lorem",
+      price: 20,
+      item_end_time: "20 minutes"
+    }
+  ]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(data)
+  //     .then((res) => {
+  //       console.log("DATA SET", res);
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Now You Fucked Up Homie kek", err);
+  //     });
+  // }, []);
+
   const signOut = () => {
     window.localStorage.removeItem("token");
+    window.location.reload();
   };
   //.get array with users items that have bids
   return (
     <div>
       <button onClick={signOut}>Sign Out</button>
-      <button onClick={() => history.push("/shop/")}>Go To Auctions</button>
+
+      {data.map(each => (
+        <DisplayShop
+          key={each.id}
+          item_name={each.item_name}
+          description={each.description}
+          price={each.price}
+          item_end_time={each.item_end_time}
+        />
+      ))}
     </div>
   );
 };

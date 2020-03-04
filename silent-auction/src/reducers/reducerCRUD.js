@@ -1,5 +1,6 @@
 export const initialState = {
-  string: ""
+  error: "",
+  isPosting: false
 };
 
 export const crudReducer = (state = initialState, action) => {

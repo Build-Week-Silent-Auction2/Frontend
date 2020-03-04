@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Select, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Form Component //
-const NewSignUp = props => {
+const NewSignUp = (props) => {
   const classes = useStyles();
 
   const [user, setUser] = React.useState({
@@ -50,13 +50,16 @@ const NewSignUp = props => {
     userType: ""
   });
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     //validation
     props.SignUp(user.userType, user);
+    setTimeout(() => {
+      props.history.push(`/${user.userType}/dash/${user.username}`);
+    }, 2000);
   };
 
-  const handleChanges = event => {
+  const handleChanges = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
     console.log(user);
   };
