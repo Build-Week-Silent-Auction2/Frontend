@@ -1,19 +1,27 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import AuctionSignUp from "./Components/Signup/SignUp";
+import NewSignUp from "./Components/Signup/NewSignUp";
 import Navigation from "./Components/Navigation/Navigation";
 import HomePage from "./Components/Home/HomePage";
 import AuctionLogin from "./Components/Login/Login";
+
+//protected route
+import { PrivateRoute } from "./utilities/PrivateRoute";
+import SellerDash from "./Components/SellerDash";
+import BidderDash from "./Components/BidderDash";
+import Shop from "./Components/Shop";
 
 function App() {
   return (
     <div className="App">
       <Navigation />
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/signup" component={AuctionSignUp} />
         <Route path="/login" component={AuctionLogin} />
+        <Route path="/signup" component={NewSignUp} />
+        <PrivateRoute path="/sellers/" component={SellerDash} />
+        <PrivateRoute path="/bidders/" component={BidderDash} />
+        <PrivateRoute path="/shop/" component={Shop} />
       </Switch>
     </div>
   );
