@@ -4,7 +4,7 @@ import "./App.css";
 import NewSignUp from "./Components/Signup/NewSignUp";
 import Navigation from "./Components/Navigation/Navigation";
 import HomePage from "./Components/Home/HomePage";
-import AuctionLogin from "./Components/Login/Login";
+import NewLogin from "./Components/Login/NewLogin";
 
 //protected route
 import { PrivateRoute } from "./utilities/PrivateRoute";
@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <Navigation />
       <Switch>
-        <Route path="/login" component={AuctionLogin} />
+        <Route path="/login" component={NewLogin} />
         <Route path="/signup" component={NewSignUp} />
         <PrivateRoute path="/sellers/" component={SellerDash} />
         <PrivateRoute path="/bidders/" component={BidderDash} />
