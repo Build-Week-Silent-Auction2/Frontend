@@ -25,22 +25,16 @@ const Navigation = (props) => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <Link to="/">Home</Link>
+              <Link to="/">Login</Link>
             </NavItem>
             <NavItem>
               <Link to="/signup">Sign-up</Link>
             </NavItem>
             <NavItem>
-              <Link to="/login">Log-in</Link>
+              <Link to="/sellers/dash/:username">Seller Dash</Link>
             </NavItem>
             <NavItem>
-              <Link to="/sellers/">Seller Dash</Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/bidders/">Bidder Dash</Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/shop/">Shop</Link>
+              <Link to="/bidders/dash/:username">Bidder Dash</Link>
             </NavItem>
           </Nav>
         </Collapse>

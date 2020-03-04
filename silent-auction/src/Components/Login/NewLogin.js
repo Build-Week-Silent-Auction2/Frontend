@@ -2,12 +2,12 @@ import React from "react";
 import { Button, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import { Login } from "../../actions/index";
 import {
   ValidatorForm,
   TextValidator,
   SelectValidator
 } from "react-material-ui-form-validator";
-// import { SignUp } from "../../actions/index";
 import styled from "styled-components";
 
 // Material UI Styles Here //
@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Form Component //
-const NewLogin = props => {
+const NewLogin = (props) => {
   const classes = useStyles();
 
   const [user, setUser] = React.useState({
@@ -43,14 +43,17 @@ const NewLogin = props => {
     userType: ""
   });
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     //validation
     // REACT 2 STUFF BELOW
-    // props.SignUp(user.userType, user);
+    props.Login(user.userType, user);
+    setTimeout(() => {
+      props.history.push(`/${user.userType}/dash/${user.username}`);
+    }, 2000);
   };
 
-  const handleChanges = event => {
+  const handleChanges = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
     console.log(user);
   };
@@ -114,4 +117,4 @@ const NewLogin = props => {
   );
 };
 
-export default NewLogin;
+export default connect(null, { Login })(NewLogin);
