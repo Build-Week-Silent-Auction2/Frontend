@@ -10,11 +10,18 @@ import {
 } from "react-material-ui-form-validator";
 import styled from "styled-components";
 
-// Material UI Styles Here //
+// Styled Components Styles //
+const MainFormWrapper = styled.div`
+  margin: 10% 40% 10% 40%;
+  border: 30px outset turquoise;
+  border-radius: 10px;
+  box-shadow: 0 0 60px 15px gray;
+`;
 const FormWrapper = styled(ValidatorForm)`
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  margin: 2% 0% 0% 0%;
+  padding: 10%;
   h2 {
     text-align: center;
   }
@@ -24,7 +31,8 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const useStyles = makeStyles((theme) => ({
+// Material UI Styles Here //
+const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -33,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// Form Component //
-const NewLogin = (props) => {
+// Login Form Component //
+const NewLogin = props => {
   const classes = useStyles();
 
   const [user, setUser] = React.useState({
@@ -43,7 +51,7 @@ const NewLogin = (props) => {
     userType: ""
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     //validation
     // REACT 2 STUFF BELOW
@@ -53,67 +61,69 @@ const NewLogin = (props) => {
     }, 2000);
   };
 
-  const handleChanges = (event) => {
+  const handleChanges = event => {
     setUser({ ...user, [event.target.name]: event.target.value });
     console.log(user);
   };
 
   return (
-    <FormWrapper
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <div>
-        <h2>Login Form</h2>
+    <MainFormWrapper>
+      <FormWrapper
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
         <div>
-          <TextValidator
-            label="Username"
-            name="username"
-            value={user.username}
-            onChange={handleChanges}
-            variant="outlined"
-            validators={["required"]}
-            errorMessages={["this field is required"]}
-          />
+          <h2>Login</h2>
+          <div>
+            <TextValidator
+              label="Username"
+              name="username"
+              value={user.username}
+              onChange={handleChanges}
+              variant="outlined"
+              validators={["required"]}
+              errorMessages={["this field is required"]}
+            />
+          </div>
+          <div>
+            <TextValidator
+              label="Password"
+              name="password"
+              value={user.password}
+              onChange={handleChanges}
+              variant="outlined"
+              validators={["required"]}
+              errorMessages={["this field is required"]}
+              type="password"
+            />
+          </div>
+          <div>
+            <SelectValidator
+              label="User Type"
+              name="userType"
+              value={user.userType}
+              onChange={handleChanges}
+              variant="outlined"
+              validators={["required"]}
+              errorMessages={["this field is required"]}
+            >
+              <MenuItem disabled value="">
+                Pick One
+              </MenuItem>
+              <MenuItem value="bidders">Bidder</MenuItem>
+              <MenuItem value="sellers">Seller</MenuItem>
+            </SelectValidator>
+          </div>
+          <ButtonWrapper>
+            <Button variant="outlined" color="primary" type="submit">
+              Log-In
+            </Button>
+          </ButtonWrapper>
         </div>
-        <div>
-          <TextValidator
-            label="Password"
-            name="password"
-            value={user.password}
-            onChange={handleChanges}
-            variant="outlined"
-            validators={["required"]}
-            errorMessages={["this field is required"]}
-            type="password"
-          />
-        </div>
-        <div>
-          <SelectValidator
-            label="User Type"
-            name="userType"
-            value={user.userType}
-            onChange={handleChanges}
-            variant="outlined"
-            validators={["required"]}
-            errorMessages={["this field is required"]}
-          >
-            <MenuItem disabled value="">
-              Pick One
-            </MenuItem>
-            <MenuItem value="bidders">Bidder</MenuItem>
-            <MenuItem value="sellers">Seller</MenuItem>
-          </SelectValidator>
-        </div>
-        <ButtonWrapper>
-          <Button variant="outlined" color="primary" type="submit">
-            Log-In
-          </Button>
-        </ButtonWrapper>
-      </div>
-    </FormWrapper>
+      </FormWrapper>
+    </MainFormWrapper>
   );
 };
 
