@@ -2,8 +2,27 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { UpdateItem } from "../actions/index";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+// STYLES HERE //
+const UpdateStyles = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-const UpdateListing = (props) => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  }
+}));
+
+const UpdateListing = props => {
   const [updateObj, setUpdateObj] = useState({
     item_name: "",
     description: "",
@@ -12,20 +31,21 @@ const UpdateListing = (props) => {
     item_end_time: ""
   });
   const params = useParams();
+  const classes = useStyles();
 
-  const handleChanges = (event) => {
+  const handleChanges = event => {
     setUpdateObj({ ...updateObj, [event.target.name]: event.target.value });
   };
 
-  const priceChange = (event) => {
+  const priceChange = event => {
     setUpdateObj({ ...updateObj, ["price"]: parseFloat(event.target.value) });
   };
 
-  const dateChange = (event) => {
+  const dateChange = event => {
     setUpdateObj({ ...updateObj, ["item_end_time"]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     //put call
     props.UpdateItem(params.id, updateObj);
@@ -43,58 +63,58 @@ const UpdateListing = (props) => {
   return (
     <div>
       <h2>Change Listing</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            name="item_name"
-            value={updateObj.item_name}
-            onChange={handleChanges}
-          />
-        </label>
+      <UpdateStyles onSubmit={handleSubmit} className={classes.root}>
+        <TextField
+          label="Name"
+          variant="outlined"
+          name="item_name"
+          value={updateObj.item_name}
+          onChange={handleChanges}
+          required
+        />
 
-        <label>
-          Description:
-          <input
-            name="description"
-            value={updateObj.description}
-            onChange={handleChanges}
-          />
-        </label>
+        <TextField
+          label="Description"
+          variant="outlined"
+          name="description"
+          value={updateObj.description}
+          onChange={handleChanges}
+          required
+        />
 
-        <label>
-          Insert Image:
-          <input
-            type="text"
-            name="img_url"
-            placeholder="enter url here"
-            value={updateObj.img_url}
-            onChange={handleChanges}
-          />
-        </label>
+        <TextField
+          label="Insert Image"
+          variant="outlined"
+          type="text"
+          name="img_url"
+          placeholder="enter url here"
+          value={updateObj.img_url}
+          onChange={handleChanges}
+        />
 
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            value={updateObj.price}
-            onChange={priceChange}
-          />
-        </label>
+        <TextField
+          label="Price"
+          variant="outlined"
+          type="number"
+          name="price"
+          value={updateObj.price}
+          onChange={priceChange}
+          required
+        />
 
-        <label>
-          Listing End Time:
-          <input
-            type="date"
-            name="item_end_time"
-            value={updateObj.item_end_time}
-            onChange={dateChange}
-          />
-        </label>
+        <TextField
+          variant="outlined"
+          type="date"
+          name="item_end_time"
+          value={updateObj.item_end_time}
+          onChange={dateChange}
+          required
+        />
 
-        <button type="submit">Accept Changes</button>
-      </form>
+        <Button variant="contained" type="submit">
+          Accept Changes
+        </Button>
+      </UpdateStyles>
     </div>
   );
 };

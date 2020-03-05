@@ -12,8 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 
 const NewNavBar = styled(Navbar)`
-  border-bottom: 10px outset turquoise;
-  border-top: 10px outset turquoise;
+  border-top: 10px outset #09d1d4;
+  border-bottom: 10px outset #050a5c;
   border-radius: 10px;
 `;
 

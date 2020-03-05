@@ -11,17 +11,31 @@ const DashWrapper = styled.div`
   justify-content: space-around;
   margin: 0 10% 5% 10%;
   /* FIRST OPTION: Line 16-20 Setup with alfredo's gradient */
-  /* background-image: linear-gradient(#09d1d4, #050a5c); */
-  /* border: 2px solid black;
+
+  /* background-image: linear-gradient(#09d1d4, #050a5c);
+  border: 2px solid black;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 20px lightgray; */
+
   /* SECOND OPTION: */
-  border: 30px outset turquoise;
+  /* border: 30px outset #09d1d4; */
+
+  /* THIRD OPTION */
+  border-width: 30px;
+  border-style: outset;
+  border-top-color: #09d1d4;
+  border-left-color: #050a5c;
+  border-right-color: #09d1d4;
+  border-bottom-color: #050a5c;
+
+  /* FOURTH OPTION */
+  /* border: 30px outset transparent;
+  border-image: linear-gradient(#09d1d4, #050a5c);
+  border-image-slice: 1; */
+
+  /* REQUIRED FOR ALL */
   border-radius: 10px;
   box-shadow: 0 0 10px 5px gray;
-  /* background: #f8f9f9; */
-  /* background: #e5e8e8; */
-  /* background: #ccd1d1; */
   background: #ebedef;
 `;
 const HeaderWrapper = styled.div`
@@ -36,7 +50,12 @@ const HeaderStyles = styled.div`
   width: 25%;
   margin-bottom: 1%;
   margin-top: 2%;
-  border: 10px outset turquoise;
+  border-width: 10px;
+  border-style: outset;
+  border-top-color: #09d1d4;
+  border-left-color: #050a5c;
+  border-right-color: #09d1d4;
+  border-bottom-color: #050a5c;
   border-radius: 10px;
   /* box-shadow: 0 0 10px 5px gray; */
   h2 {
