@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation, useHistory } from "react-router-dom";
+import "../App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -14,7 +16,6 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 // Material UI Styles //
 const useStyles = makeStyles((theme) => ({
@@ -51,22 +52,26 @@ const Display = (props) => {
     setExpanded(!expanded);
   };
 
+  const history = useHistory();
+  const location = useLocation();
+
+  const grabItemDetails = (id, obj) => {
+    history.push(`${location.pathname}/item/${id}`, obj);
+  };
+
   return (
-    <div>
+    <div
+      onClick={() =>
+        grabItemDetails(props.allData.id, props.allData, props.setGetTrigger)
+      }
+      className="eachCard"
+    >
       <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
               {props.item_name[0]}
             </Avatar>
-          }
-          action={
-            <IconButton
-              aria-label="settings"
-              //onClick={() => CLICK HERE TO BID ON ITEM}
-            >
-              <MoreVertIcon />
-            </IconButton>
           }
           title={`${props.item_name} starting at $${props.price} USD`}
           subheader={props.item_end_time}

@@ -1,70 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import DisplayShop from "./DisplayShop";
+import CreateItem from "./CreateItem";
 
 const SellerDash = (props) => {
-  const [data, setData] = useState([
-    {
-      id: 0,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    },
-    {
-      id: 1,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    },
-    {
-      id: 2,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    },
-    {
-      id: 3,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    },
-    {
-      id: 4,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    },
-    {
-      id: 5,
-      item_name: "Hammer",
-      description: "lorem",
-      price: 20,
-      item_end_time: "20 minutes"
-    }
-  ]);
+  const [data, setData] = useState([]);
+  const [getTrigger, setGetTrigger] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(data)
-  //     .then((res) => {
-  //       console.log("DATA SET", res);
-  //       setData(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Now You Fucked Up Homie kek", err);
-  //     });
-  // }, []);
-
-  console.log(props);
   const history = useHistory();
   const location = useLocation();
+  const params = useParams();
+
+  useEffect(() => {
+    axios
+      .get("https://silent-auctionbw3.herokuapp.com/api/items")
+      .then((res) => {
+        setData(res.data.items);
+        setGetTrigger(false);
+      })
+      .catch((err) => {
+        setGetTrigger(false);
+      });
+  }, [getTrigger]);
 
   const signOut = () => {
     window.localStorage.removeItem("token");
@@ -76,19 +36,25 @@ const SellerDash = (props) => {
     <div>
       <div>
         <button onClick={signOut}>Sign Out</button>
-        <button onClick={() => history.push(`${location.pathname}/additem`)}>
-          ➕ Item
-        </button>
+        <button onClick={() => setToggle(!toggle)}>Add Item</button>
       </div>
-      {data.map((each) => (
-        <DisplayShop
-          key={each.id}
-          item_name={each.item_name}
-          description={each.description}
-          price={each.price}
-          item_end_time={each.item_end_time}
-        />
-      ))}
+      {toggle ? (
+        <CreateItem setGetTrigger={setGetTrigger} setToggle={setToggle} />
+      ) : null}
+      <div>
+        {data.map((each) => {
+          return (
+            <DisplayShop
+              key={each.id}
+              item_name={each.item_name}
+              description={each.description}
+              price={each.price}
+              item_end_time={each.item_end_time}
+              allData={each}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
