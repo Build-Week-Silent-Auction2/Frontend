@@ -33,6 +33,7 @@ const Navigation = props => {
             <NavItem>
               -<Link to="/sellers/dash/:username">Seller Dash</Link>
             </NavItem>
+
             <NavItem>
               -<Link to="/bidders/dash/:username">Bidder Dash</Link>
             </NavItem>
