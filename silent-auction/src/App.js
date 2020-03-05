@@ -9,8 +9,7 @@ import NewLogin from "./Components/Login/NewLogin";
 import { PrivateRoute } from "./utilities/PrivateRoute";
 import SellerDash from "./Components/SellerDash";
 import BidderDash from "./Components/BidderDash";
-
-import CreateItem from "./Components/CreateItem";
+import ItemDisplay from "./Components/ItemDisplay";
 
 function App() {
   return (
@@ -31,8 +30,8 @@ function App() {
         />
         <PrivateRoute
           exact
-          path="/sellers/dash/:username/additem"
-          component={CreateItem}
+          path="/:userType/dash/:username/item/:id"
+          component={ItemDisplay}
         />
       </Switch>
     </div>

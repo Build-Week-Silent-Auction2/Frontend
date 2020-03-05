@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation, useHistory } from "react-router-dom";
+import "../App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -17,6 +19,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
+import { Button } from "@material-ui/core";
 
 // Styled Components Styles //
 const CardWrapper = styled.div`
@@ -31,7 +34,7 @@ const CardWrapper = styled.div`
 `;
 
 // Material UI Styles //
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345
   },
@@ -55,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Display Component //
-const Display = props => {
+const Display = (props) => {
   // Brings in styles //
   const classes = useStyles();
   // Material UI required state //
@@ -65,62 +68,52 @@ const Display = props => {
     setExpanded(!expanded);
   };
 
+  const history = useHistory();
+  const location = useLocation();
+
+  const grabItemDetails = (id, obj) => {
+    history.push(`${location.pathname}/item/${id}`, obj);
+  };
+
   return (
-    <CardWrapper>
-      <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              {props.item_name[0]}
-            </Avatar>
-          }
-          action={
-            <IconButton
-              aria-label="settings"
-              //onClick={() => CLICK HERE TO BID ON ITEM}
-            >
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={`${props.item_name}`}
-          subheader={`Starting at $${props.price} USD`}
-        />
-        {/* THE IMAGE */}
-        <CardMedia className={classes.media} image={props.img_url} />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Bidding Ends In: <b>{props.item_end_time}</b>
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <div>
+      <CardWrapper>
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                {props.item_name[0]}
+              </Avatar>
+            }
+            title={`${props.item_name} starting at $${props.price} USD`}
+            subheader={props.item_end_time}
+            title={`${props.item_name}`}
+            subheader={`Starting at $${props.price} USD`}
+          />
+          {/* THE IMAGE */}
+          <CardMedia className={classes.media} image={props.img_url} />
           <CardContent>
-            <Typography paragraph>{props.description}</Typography>
-            <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-            <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-            <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-            <Typography>{/* ENTER WHAT YOU WANT */}</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Bidding Ends In: <b>{props.item_end_time}</b>
+            </Typography>
           </CardContent>
-        </Collapse>
-      </Card>
-    </CardWrapper>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() =>
+              grabItemDetails(
+                props.allData.id,
+                props.allData,
+                props.setGetTrigger
+              )
+            }
+            className="eachCard"
+          >
+            View Item
+          </Button>
+        </Card>
+      </CardWrapper>
+    </div>
   );
 };
 
