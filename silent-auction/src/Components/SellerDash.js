@@ -105,13 +105,15 @@ const SellerDash = props => {
       </div>
       <DashWrapper>
         {data.map(each => {
+          const date = new Date(each.item_end_time).toLocaleString();
           return (
             <DisplayShop
               key={each.id}
               item_name={each.item_name}
               description={each.description}
+              img_url={each.img_url}
               price={each.price}
-              item_end_time={each.item_end_time}
+              item_end_time={date}
               allData={each}
             />
           );
