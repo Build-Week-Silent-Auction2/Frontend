@@ -19,6 +19,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
+import { Button } from "@material-ui/core";
 
 // Styled Components Styles //
 const CardWrapper = styled.div`
@@ -75,12 +76,7 @@ const Display = (props) => {
   };
 
   return (
-    <div
-      onClick={() =>
-        grabItemDetails(props.allData.id, props.allData, props.setGetTrigger)
-      }
-      className="eachCard"
-    >
+    <div>
       <CardWrapper>
         <Card className={classes.root}>
           <CardHeader
@@ -91,14 +87,6 @@ const Display = (props) => {
             }
             title={`${props.item_name} starting at $${props.price} USD`}
             subheader={props.item_end_time}
-            action={
-              <IconButton
-                aria-label="settings"
-                //onClick={() => CLICK HERE TO BID ON ITEM}
-              >
-                <MoreVertIcon />
-              </IconButton>
-            }
             title={`${props.item_name}`}
             subheader={`Starting at $${props.price} USD`}
           />
@@ -109,33 +97,20 @@ const Display = (props) => {
               Bidding Ends In: <b>{props.item_end_time}</b>
             </Typography>
           </CardContent>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>{props.description}</Typography>
-              <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-              <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-              <Typography paragraph>{/* ENTER WHAT YOU WANT */}</Typography>
-              <Typography>{/* ENTER WHAT YOU WANT */}</Typography>
-            </CardContent>
-          </Collapse>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() =>
+              grabItemDetails(
+                props.allData.id,
+                props.allData,
+                props.setGetTrigger
+              )
+            }
+            className="eachCard"
+          >
+            View Item
+          </Button>
         </Card>
       </CardWrapper>
     </div>
