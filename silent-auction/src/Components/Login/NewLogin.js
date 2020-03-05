@@ -10,6 +10,7 @@ import {
 } from "react-material-ui-form-validator";
 import styled from "styled-components";
 import { Spinner } from "reactstrap";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Styled Components Styles //
 const MainFormWrapper = styled.div`
@@ -40,6 +41,10 @@ const SpinnerWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 25%;
+`;
+const InnerRouter = styled.div`
+  text-align: center;
+  padding: 3%;
 `;
 
 // Material UI Styles Here //
@@ -88,6 +93,13 @@ const NewLogin = props => {
         </SpinnerWrapper>
       ) : (
         <MainFormWrapper>
+          <InnerRouter>
+            <em>
+              Don't have an account?
+              <br /> Click <Link to="/signup">here</Link>!
+            </em>
+          </InnerRouter>
+
           <FormWrapper
             className={classes.root}
             noValidate
