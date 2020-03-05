@@ -17,7 +17,7 @@ const NewNavBar = styled(Navbar)`
   border-radius: 10px;
 `;
 
-const Navigation = props => {
+const Navigation = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -25,7 +25,10 @@ const Navigation = props => {
   return (
     <div>
       <NewNavBar color="" light>
-        <NavbarBrand href="/" className="mr-auto">
+        <NavbarBrand
+          href="https://silent-auctionav.netlify.com/"
+          className="mr-auto"
+        >
           Silent Auction
         </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
