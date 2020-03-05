@@ -90,7 +90,6 @@ const Display = (props) => {
             title={`${props.item_name}`}
             subheader={`Starting at $${props.price} USD`}
           />
-          {/* THE IMAGE */}
           <CardMedia className={classes.media} image={props.img_url} />
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">

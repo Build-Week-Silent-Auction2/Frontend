@@ -16,6 +16,7 @@ const ItemDisplay = (props) => {
   return (
     <div>
       <h1>{props.location.state.item_name}</h1>
+      <img src={props.location.state.img_url} />
       <p>{props.location.state.description}</p>
       <p>{`$${props.location.state.price} USD`}</p>
       <p>{props.location.state.item_end_time}</p>

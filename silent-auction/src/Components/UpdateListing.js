@@ -7,8 +7,7 @@ const UpdateListing = (props) => {
   const [updateObj, setUpdateObj] = useState({
     item_name: "",
     description: "",
-    img_url:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Flight-bulb&psig=AOvVaw06mYz8idZe2emCYHZ4dDWV&ust=1583447736616000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDtitHwgegCFQAAAAAdAAAAABAD",
+    img_url: "",
     price: "",
     item_end_time: ""
   });
@@ -34,6 +33,7 @@ const UpdateListing = (props) => {
     setUpdateObj({
       item_name: "",
       description: "",
+      img_url: "",
       price: "",
       item_end_time: ""
     });
@@ -58,6 +58,17 @@ const UpdateListing = (props) => {
           <input
             name="description"
             value={updateObj.description}
+            onChange={handleChanges}
+          />
+        </label>
+
+        <label>
+          Insert Image:
+          <input
+            type="text"
+            name="img_url"
+            placeholder="enter url here"
+            value={updateObj.img_url}
             onChange={handleChanges}
           />
         </label>
