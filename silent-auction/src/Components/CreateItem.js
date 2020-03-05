@@ -6,11 +6,12 @@ const CreateItem = (props) => {
   const [item, setItem] = useState({
     item_name: "",
     description: "",
-    img_url:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Flight-bulb&psig=AOvVaw06mYz8idZe2emCYHZ4dDWV&ust=1583447736616000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDtitHwgegCFQAAAAAdAAAAABAD",
+    img_url: "",
     price: "",
     item_end_time: ""
   });
+  console.log(item);
+  console.log(props);
 
   const handleChanges = (event) => {
     setItem({ ...item, [event.target.name]: event.target.value });
@@ -32,6 +33,7 @@ const CreateItem = (props) => {
     setItem({
       item_name: "",
       description: "",
+      img_url: "",
       price: "",
       item_end_time: ""
     });
@@ -58,6 +60,17 @@ const CreateItem = (props) => {
             <input
               name="description"
               value={item.description}
+              onChange={handleChanges}
+            />
+          </label>
+
+          <label>
+            Insert Image:
+            <input
+              type="text"
+              name="img_url"
+              placeholder="enter url here"
+              value={item.img_url}
               onChange={handleChanges}
             />
           </label>
