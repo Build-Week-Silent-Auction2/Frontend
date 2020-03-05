@@ -17,8 +17,8 @@ const DashWrapper = styled.div`
   /* FIRST OPTION: Line 16-20 Setup with alfredo's gradient */
   /* background-image: linear-gradient(#09d1d4, #050a5c); */
   /* border: 2px solid black;
-border-radius: 20px;
-box-shadow: 0px 0px 20px 20px lightgray; */
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 20px lightgray; */
   /* SECOND OPTION: */
   border: 30px outset turquoise;
   border-radius: 10px;
@@ -56,7 +56,7 @@ const ButtonWrapper = styled.div`
 `;
 
 // Seller Dashboard Component //
-const SellerDash = (props) => {
+const SellerDash = props => {
   const [data, setData] = useState([]);
   const [getTrigger, setGetTrigger] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -64,11 +64,11 @@ const SellerDash = (props) => {
   useEffect(() => {
     axios
       .get("https://silent-auctionbw3.herokuapp.com/api/items")
-      .then((res) => {
+      .then(res => {
         setData(res.data.items);
         setGetTrigger(false);
       })
-      .catch((err) => {
+      .catch(err => {
         setGetTrigger(false);
       });
   }, [getTrigger]);
@@ -104,7 +104,7 @@ const SellerDash = (props) => {
         ) : null}
       </div>
       <DashWrapper>
-        {data.map((each) => {
+        {data.map(each => {
           return (
             <DisplayShop
               key={each.id}
