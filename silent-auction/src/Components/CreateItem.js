@@ -1,8 +1,36 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { NewItem } from "../actions/index";
+import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 
-const CreateItem = (props) => {
+// STYLES //
+const UpdateStyles = styled.form`
+  display: flex;
+  justify-content: center;
+`;
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const TopWrapper = styled.div`
+  margin: 3% 10%;
+  border: 10px outset turquoise;
+  border-radius: 10px;
+`;
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  }
+}));
+
+const CreateItem = props => {
+  const classes = useStyles();
   const [item, setItem] = useState({
     item_name: "",
     description: "",
@@ -13,19 +41,19 @@ const CreateItem = (props) => {
   console.log(item);
   console.log(props);
 
-  const handleChanges = (event) => {
+  const handleChanges = event => {
     setItem({ ...item, [event.target.name]: event.target.value });
   };
 
-  const priceChange = (event) => {
+  const priceChange = event => {
     setItem({ ...item, ["price"]: parseFloat(event.target.value) });
   };
 
-  const dateChange = (event) => {
+  const dateChange = event => {
     setItem({ ...item, ["item_end_time"]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     //post call
     props.NewItem(props.id, item);
@@ -42,63 +70,63 @@ const CreateItem = (props) => {
   };
 
   return (
-    <div>
-      <h2>Create new item form</h2>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              name="item_name"
-              value={item.item_name}
-              onChange={handleChanges}
-            />
-          </label>
+    <TopWrapper>
+      <HeaderContainer>
+        <h2>Add Item</h2>
+      </HeaderContainer>
+      <UpdateStyles onSubmit={handleSubmit} className={classes.root}>
+        <TextField
+          label="Name"
+          variant="outlined"
+          name="item_name"
+          value={item.item_name}
+          onChange={handleChanges}
+          required
+        />
 
-          <label>
-            Description:
-            <input
-              name="description"
-              value={item.description}
-              onChange={handleChanges}
-            />
-          </label>
+        <TextField
+          label="Description"
+          variant="outlined"
+          name="description"
+          value={item.description}
+          onChange={handleChanges}
+          required
+        />
 
-          <label>
-            Insert Image:
-            <input
-              type="text"
-              name="img_url"
-              placeholder="enter url here"
-              value={item.img_url}
-              onChange={handleChanges}
-            />
-          </label>
+        <TextField
+          label="Insert Image"
+          variant="outlined"
+          type="text"
+          name="img_url"
+          placeholder="enter url here"
+          value={item.img_url}
+          onChange={handleChanges}
+        />
 
-          <label>
-            Price:
-            <input
-              type="number"
-              name="price"
-              value={item.price}
-              onChange={priceChange}
-            />
-          </label>
+        <TextField
+          label="Price"
+          variant="outlined"
+          type="number"
+          name="price"
+          value={item.price}
+          onChange={priceChange}
+          required
+        />
 
-          <label>
-            Listing End Time:
-            <input
-              type="date"
-              name="item_end_time"
-              value={item.item_end_time}
-              onChange={dateChange}
-            />
-          </label>
+        <TextField
+          variant="outlined"
+          type="date"
+          name="item_end_time"
+          value={item.item_end_time}
+          onChange={dateChange}
+          required
+        />
 
-          <button type="submit">Create Item</button>
-        </form>
-      </div>
-    </div>
+        <Button variant="contained" type="submit">
+          Add Listing
+        </Button>
+      </UpdateStyles>
+    </TopWrapper>
   );
 };
 
