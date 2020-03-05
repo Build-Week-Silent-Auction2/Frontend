@@ -9,6 +9,13 @@ import {
   NavItem
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import styled from "styled-components";
+
+const NewNavBar = styled(Navbar)`
+  border-bottom: 10px outset turquoise;
+  border-top: 10px outset turquoise;
+  border-radius: 10px;
+`;
 
 const Navigation = props => {
   const [collapsed, setCollapsed] = useState(true);
@@ -17,7 +24,7 @@ const Navigation = props => {
 
   return (
     <div>
-      <Navbar color="light" light>
+      <NewNavBar color="" light>
         <NavbarBrand href="/" className="mr-auto">
           Silent Auction
         </NavbarBrand>
@@ -39,7 +46,7 @@ const Navigation = props => {
             </NavItem>
           </Nav>
         </Collapse>
-      </Navbar>
+      </NewNavBar>
     </div>
   );
 };
